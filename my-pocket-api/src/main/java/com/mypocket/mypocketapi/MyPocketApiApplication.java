@@ -7,6 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * http://localhost:8080/h2-console/
  *
  * jdbc:h2:mem:testdb
+ * 
+ * http://localhost:8080/swagger-ui.html#/
  */
 @SpringBootApplication
 public class MyPocketApiApplication {
