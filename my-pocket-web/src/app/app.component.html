@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <a class="navbar-brand" routerLinkActive="active" [routerLink]="['/']"><i class="fas fa-home"></i></a>
+  <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+      aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="collapsibleNavId">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/cadastro']" routerLinkActive="active">Lançamentos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/categorias']" routerLinkActive="active" >Categorias</a>
+      </li>
+    </ul>
+    <div class="nav-item dropdown my-2 my-lg-0 mr-5">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <button type="button" class="btn btn-outline-light"><i class="fas fa-user-circle"></i></button></a>
+        <div class="dropdown-menu" aria-labelledby="dropdownId">
+          <a class="dropdown-item" href="#"><i class="far fa-envelope-open"> Emails</i></a>
+          <a class="dropdown-item" href="#"><i class="far fa-comments"> Mensagens</i></a>
+        </div>
+      </div>
+  </div>
+</nav>
+
+<div class="container mt-3">
+  <router-outlet></router-outlet>
+</div>

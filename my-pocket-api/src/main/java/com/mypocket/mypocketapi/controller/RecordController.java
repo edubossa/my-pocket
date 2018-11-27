@@ -14,6 +14,7 @@ import reactor.core.publisher.Mono;
 @Api(tags = "Registros")
 @RestController
 @RequestMapping("/records")
+@CrossOrigin
 public class RecordController {
 
     @Autowired

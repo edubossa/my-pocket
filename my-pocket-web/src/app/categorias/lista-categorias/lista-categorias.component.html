@@ -1,0 +1,53 @@
+<table class="table table-hover" *ngIf="categorias$ | async as categorias; else loading" >
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Descrição</th>
+      <th>#</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let c of categorias">
+      <td>{{ c.id }}</td>
+      <td>{{ c.name }}</td>
+      <td>
+        <a class="btn btn-outline-warning btn-sm" [routerLink]="['/categorias/update']" routerLinkActive="active"> <i class="fas fa-pencil-alt"></i></a>
+        <a class="btn btn-outline-danger btn-sm ml-3" href=""><i class="fas fa-trash-alt"></i></a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- New Categoria Modal -->
+<div class="modal fade" id="newCategoriaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Cadastrar categoria</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form [formGroup]="categoriaForm" (ngSubmit)="onSubmit()" >
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="categoria-name" class="col-form-label">Categoria:</label>
+              <input type="text" formControlName="name" class="form-control" id="categoria-name" required>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="submit" [disabled]="!categoriaForm.valid" class="btn btn-primary" >Salvar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+</div>
+
+<a [routerLink]="['/categorias/new']" routerLinkActive="active" class="float" data-toggle="modal" data-target="#newCategoriaModal">
+  <i class="fa fa-plus btn-float"></i>
+</a>
+
+<ng-template #loading>
+    <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
+</ng-template>

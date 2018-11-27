@@ -15,6 +15,7 @@ import reactor.core.publisher.Mono;
 @Api(tags= "Categorias")
 @RestController
 @RequestMapping("/categories")
+@CrossOrigin
 public class CategoryController {
 	
 	@Autowired

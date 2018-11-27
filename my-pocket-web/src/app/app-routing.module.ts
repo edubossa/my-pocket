@@ -1,0 +1,22 @@
+
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
+const routes: Routes = [
+    { path: '', pathMatch: 'full', redirectTo: 'cadastro' },
+    { 
+        path: 'cadastro', 
+        loadChildren: './cadastro/cadastro.module#CadastroModule' 
+    },
+    {
+        path: 'categorias',
+        loadChildren: './categorias/categorias.module#CategoriasModule'
+    }
+];
+
+@NgModule({
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule],
+    declarations: [],
+})
+export class AppRoutingModule { }
