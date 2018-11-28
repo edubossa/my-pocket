@@ -3,6 +3,7 @@ import { CategoriaService } from '../categoria.service';
 import { Categoria } from '../categoria';
 import { Observable } from 'rxjs';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-lista-categorias',
@@ -33,13 +34,26 @@ export class ListaCategoriasComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log('SEND ==> ' + JSON.stringify(this.categoriaForm.value));
     this.categoriaService.save(this.categoriaForm)
+      .pipe(
+        take(1) //Usado para desinscrever o subscribe
+      )
       .subscribe(data => {
         console.log('Retorno cadastro de dados ' +  JSON.stringify(data));
+    }, (error: any) => {
+        console.error(JSON.stringify(error));
+        alert(error.error.message); 
+    }, () => { //Complete - chamado apos o subscribe, sejaefetuado com sucesso
+        console.log('REQUISICAO FINALIZADA');
+        this.resetForm();
+        this.loadCategoria();
     });
-    console.warn(this.categoriaForm.value);
-    this.resetForm();
-    this.loadCategoria();
+    
+  }
+
+  delete() {
+    alert('XABARACUNAIA')
   }
 
 }

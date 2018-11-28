@@ -1,6 +1,5 @@
 package com.mypocket.mypocketapi.service;
 
-import com.mypocket.mypocketapi.model.Record;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,8 +8,6 @@ import com.mypocket.mypocketapi.repository.CategoryRepository;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-import java.util.Optional;
 
 @Service
 public class CategoryService {
@@ -33,6 +30,11 @@ public class CategoryService {
 	
 	public Flux<Category> findAll() {
 		return Flux.fromIterable(this.repository.findAll());
+	}
+	
+	public Mono<Void> delete(Long id) {
+		this.repository.deleteById(id);
+		return Mono.empty();
 	}
 	
 }

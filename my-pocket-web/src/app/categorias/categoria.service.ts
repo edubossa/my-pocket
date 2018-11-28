@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Categoria } from './categoria';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { delay, tap, catchError } from 'rxjs/operators';
 import { FormGroup } from '@angular/forms';
+import { environment } from 'src/environments/environment.prod';
 
 
 const httpOptions = {
@@ -15,12 +16,11 @@ const httpOptions = {
 })
 export class CategoriaService {
 
-
-  private readonly API = 'http://localhost:8080/categories';
+  private readonly API = `${environment.API}categories`;
 
   constructor(private httpClient: HttpClient) { }
 
-  findCategorias() {
+  findCategorias(): Observable<Categoria[]> {
     return this.httpClient.get<Categoria[]>(this.API)
     .pipe(
       delay(500),
@@ -29,11 +29,19 @@ export class CategoriaService {
   }
 
   save(form: FormGroup): Observable<Categoria> {
-    return this.httpClient.post(this.API, form.value, httpOptions)
+    return this.httpClient.post<Categoria>(this.API, form.value, httpOptions)
     .pipe(
-      tap(console.log),
-      //catchError(console.log(''))
+      tap(data => {
+        console.log(JSON.stringify(data));
+      })
     );
+  }
+
+  delete(id: number) {
+    return this.httpClient.delete(this.API + "/" + id)
+      .pipe(
+        tap(console.log)
+      )
   }
 
 }
