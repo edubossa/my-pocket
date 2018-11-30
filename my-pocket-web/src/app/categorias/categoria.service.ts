@@ -38,10 +38,10 @@ export class CategoriaService {
   }
 
   delete(id: number) {
-    return this.httpClient.delete(this.API + "/" + id)
+    return this.httpClient.delete(this.API + '/' + id)
       .pipe(
         tap(console.log)
-      )
+      );
   }
 
 }

@@ -20,13 +20,13 @@ export class ListaCategoriasComponent implements OnInit {
 
   ngOnInit() {
     this.resetForm();
-    this.loadCategoria();
   }
 
   resetForm() {
     this.categoriaForm = this.fb.group({
       name: ['', Validators.required]
-    })
+    });
+    this.loadCategoria();
   }
 
   loadCategoria() {
@@ -37,23 +37,39 @@ export class ListaCategoriasComponent implements OnInit {
     console.log('SEND ==> ' + JSON.stringify(this.categoriaForm.value));
     this.categoriaService.save(this.categoriaForm)
       .pipe(
-        take(1) //Usado para desinscrever o subscribe
+        take(1) // Usado para desinscrever o subscribe
       )
       .subscribe(data => {
         console.log('Retorno cadastro de dados ' +  JSON.stringify(data));
     }, (error: any) => {
         console.error(JSON.stringify(error));
-        alert(error.error.message); 
-    }, () => { //Complete - chamado apos o subscribe, sejaefetuado com sucesso
+        alert(error.error.message);
+    }, () => { // Complete - chamado apos o subscribe, sejaefetuado com sucesso
         console.log('REQUISICAO FINALIZADA');
         this.resetForm();
-        this.loadCategoria();
     });
-    
+
   }
 
-  delete() {
-    alert('XABARACUNAIA')
+  delete(id: number) {
+
+    const res = confirm('Confirma a remoção da categoria - ' + id);
+    if (!res) {
+      return;
+    }
+
+    this.categoriaService.delete(id).pipe(
+      take(1)
+    )
+    .subscribe(data => {
+      console.log(data);
+    }, (error: any) => {
+      alert(JSON.stringify(error));
+    }, () => {
+      console.log('FINALIZANDO DELETE CATEGORIA - ' +  id);
+      this.resetForm();
+    });
+
   }
 
 }
