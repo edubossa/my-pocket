@@ -1,3 +1,25 @@
-<p>
-  new-categoria works!
-</p>
+<!-- New Categoria Modal -->
+<div class="modal fade" id="newCategoriaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Cadastrar categoria</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form [formGroup]="categoriaForm" (ngSubmit)="onSubmit()" >
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="categoria-name" class="col-form-label">Categoria:</label>
+              <input type="text" formControlName="name" class="form-control" id="categoria-name" required>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="submit" [disabled]="!categoriaForm.valid" class="btn btn-primary" >Salvar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+</div>

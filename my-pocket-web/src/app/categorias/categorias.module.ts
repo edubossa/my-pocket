@@ -6,12 +6,14 @@ import { ListaCategoriasComponent } from './lista-categorias/lista-categorias.co
 import { NewCategoriaComponent } from './new-categoria/new-categoria.component';
 import { UpdateCategoriaComponent } from './update-categoria/update-categoria.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DeleteCategoriaComponent } from './delete-categoria/delete-categoria.component';
 
 @NgModule({
   declarations: [
     ListaCategoriasComponent, 
     NewCategoriaComponent,
-    UpdateCategoriaComponent
+    UpdateCategoriaComponent,
+    DeleteCategoriaComponent
   ],
   imports: [
     CommonModule,
