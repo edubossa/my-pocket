@@ -4,9 +4,9 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'cadastro' },
-    { 
-        path: 'cadastro', 
-        loadChildren: './cadastro/cadastro.module#CadastroModule' 
+    {
+        path: 'cadastro',
+        loadChildren: './cadastro/cadastro.module#CadastroModule'
     },
     {
         path: 'categorias',

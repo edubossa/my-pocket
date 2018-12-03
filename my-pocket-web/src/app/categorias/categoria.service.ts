@@ -28,20 +28,20 @@ export class CategoriaService {
     );
   }
 
+  findById(id: any): Observable<Categoria> {
+    return this.httpClient.get<Categoria>(this.API + '/' + id);
+  }
+
   save(form: FormGroup): Observable<Categoria> {
-    return this.httpClient.post<Categoria>(this.API, form.value, httpOptions)
-    .pipe(
-      tap(data => {
-        console.log(JSON.stringify(data));
-      })
-    );
+    return this.httpClient.post<Categoria>(this.API, form.value, httpOptions);
+  }
+
+  update(form: FormGroup): Observable<Categoria> {
+    return this.httpClient.put<Categoria>(this.API + '/' + form.value.id, form.value, httpOptions);
   }
 
   delete(id: number) {
-    return this.httpClient.delete(this.API + '/' + id)
-      .pipe(
-        tap(console.log)
-      );
+    return this.httpClient.delete(this.API + '/' + id);
   }
 
 }
