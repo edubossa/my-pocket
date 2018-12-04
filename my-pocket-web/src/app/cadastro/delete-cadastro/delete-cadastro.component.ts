@@ -15,7 +15,7 @@ export class DeleteCadastroComponent implements OnInit {
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     if (!confirm('Confirma a remoção da categoria - ' + id)) {
-      this.router.navigate(['/cadastro']);
+      this.router.navigate(['/lancamento']);
       return;
     }
     this.service.delete(id).subscribe(data => {
@@ -23,7 +23,7 @@ export class DeleteCadastroComponent implements OnInit {
     }, (error: any) => {
       console.log(JSON.stringify(error));
     }, () => {
-      this.router.navigate(['/cadastro']);
+      this.router.navigate(['/lancamento']);
     });
 
   }

@@ -17,16 +17,15 @@
         <td>{{ c.date | date:'M/dd/y' }}</td>
         <td>{{ c.value }}</td>
         <td>
-          <a class="btn btn-outline-warning btn-sm" [routerLink]="['/cadastro/update', c.id]" routerLinkActive="active"><i class="fas fa-pencil-alt"></i></a>
-          <a class="btn btn-outline-primary btn-sm ml-3" [routerLink]="['/cadastro/detail', c.id]" routerLinkActive="active"><i class="fas fa-info-circle"></i></a>
-          <a class="btn btn-outline-danger btn-sm ml-3" [routerLink]="['/cadastro/delete', c.id]" routerLinkActive="active"><i class="fas fa-trash-alt"></i></a>
-          <!-- <app-delete-categoria [id]='c.id' (deleteCategoriaEvent)='listenerCategoria($event)' ></app-delete-categoria>    -->
+          <a class="btn btn-outline-warning btn-sm" [routerLink]="['/lancamento/update', c.id]" routerLinkActive="active"><i class="fas fa-pencil-alt"></i></a>
+          <a class="btn btn-outline-primary btn-sm ml-3" [routerLink]="['/lancamento/detail', c.id]" routerLinkActive="active"><i class="fas fa-info-circle"></i></a>
+          <a class="btn btn-outline-danger btn-sm ml-3" [routerLink]="['/lancamento/delete', c.id]" routerLinkActive="active"><i class="fas fa-trash-alt"></i></a>
         </td>
       </tr>
     </tbody>
   </table>
 
-<a class="float" [routerLink]="['/cadastro/new']" routerLinkActive="active"  >
+<a class="float" [routerLink]="['/lancamento/new']" routerLinkActive="active"  >
   <i class="fa fa-plus btn-float"></i>
 </a>
 
