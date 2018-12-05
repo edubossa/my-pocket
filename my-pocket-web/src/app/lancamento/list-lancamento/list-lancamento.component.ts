@@ -1,19 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { CadastroService } from '../cadastro.service';
+import { LancamentoService } from '../lancamento.service';
 import { take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { Cadastro } from '../cadastro';
+import { Lancamento } from '../lancamento';
 
 @Component({
-  selector: 'app-lista-cadastro',
-  templateUrl: './lista-cadastro.component.html',
-  styleUrls: ['./lista-cadastro.component.css']
+  selector: 'app-list-lancamento',
+  templateUrl: './list-lancamento.component.html'
 })
-export class ListaCadastroComponent implements OnInit {
+export class ListLancamentoComponent implements OnInit {
 
-  cadastros: Cadastro[];
+  cadastros: Lancamento[];
 
-  constructor(private service: CadastroService) { }
+  constructor(private service: LancamentoService) { }
 
   ngOnInit() {
     this.load();

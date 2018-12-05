@@ -5,7 +5,7 @@ enum Type {
     OUTPUT
 }
 
-export interface Cadastro {
+export interface Lancamento {
     id: number;
     categoria: Categoria;
     type: Type;

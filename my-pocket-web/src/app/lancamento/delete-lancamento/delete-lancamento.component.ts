@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CadastroService } from '../cadastro.service';
+import { LancamentoService } from '../lancamento.service';
 
 @Component({
-  selector: 'app-delete-cadastro',
-  templateUrl: './delete-cadastro.component.html'
+  selector: 'app-delete-lancamento',
+  templateUrl: './delete-lancamento.component.html'
 })
-export class DeleteCadastroComponent implements OnInit {
+export class DeleteLancamentoComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private router: Router,
-    private service: CadastroService) { }
+    private service: LancamentoService) { }
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');

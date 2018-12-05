@@ -6,7 +6,7 @@ const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'lancamento' },
     {
         path: 'lancamento',
-        loadChildren: './cadastro/cadastro.module#CadastroModule'
+        loadChildren: './lancamento/lancamento.module#LancamentoModule'
     },
     {
         path: 'categorias',
