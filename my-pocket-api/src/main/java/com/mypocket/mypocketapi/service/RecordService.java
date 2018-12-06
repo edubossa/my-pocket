@@ -37,11 +37,7 @@ public class RecordService {
         return Flux.empty();
     }
 
-    public Mono<Record> save(Long id, Record r) {
-        Category c = new Category();
-        c.setId(id);
-        r.setCategory(c);
-        c.setId(id);
+    public Mono<Record> save(Record r) {
         r.setDate(LocalDateTime.now());
         return Mono.just(this.recordRepository.save(r));
     }

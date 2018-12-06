@@ -15,7 +15,7 @@ export class DeleteLancamentoComponent implements OnInit {
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     if (!confirm('Confirma a remoção da categoria - ' + id)) {
-      this.router.navigate(['/lancamento']);
+      this.router.navigate(['/lancamentos']);
       return;
     }
     this.service.delete(id).subscribe(data => {
@@ -23,7 +23,7 @@ export class DeleteLancamentoComponent implements OnInit {
     }, (error: any) => {
       console.log(JSON.stringify(error));
     }, () => {
-      this.router.navigate(['/lancamento']);
+      this.router.navigate(['/lancamentos']);
     });
 
   }

@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-    { path: '', pathMatch: 'full', redirectTo: 'lancamento' },
+    { path: '', pathMatch: 'full', redirectTo: 'lancamentos' },
     {
-        path: 'lancamento',
+        path: 'lancamentos',
         loadChildren: './lancamento/lancamento.module#LancamentoModule'
     },
     {

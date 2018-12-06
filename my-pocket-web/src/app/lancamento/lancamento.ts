@@ -7,7 +7,7 @@ enum Type {
 
 export interface Lancamento {
     id: number;
-    categoria: Categoria;
+    category: Categoria;
     type: Type;
     description: string;
     date: Date;

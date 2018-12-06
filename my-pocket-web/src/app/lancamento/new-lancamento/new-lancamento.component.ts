@@ -24,7 +24,9 @@ export class NewLancamentoComponent implements OnInit {
   ngOnInit() {
     this.lancamentoForm = this.fb.group({
       description: ['', Validators.required],
-      idCategoria: ['', Validators.required],
+      category: this.fb.group({
+        id: ['', Validators.required]
+      }),
       type: ['', Validators.required],
       value: ['', Validators.required]
     });
@@ -38,14 +40,13 @@ export class NewLancamentoComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(JSON.stringify(this.lancamentoForm.value));
     this.service.post(this.lancamentoForm.value).pipe(take(1))
     .subscribe(data => {
       console.log('Dados inseridos com sucesso ==> ' + JSON.stringify(data));
     }, (error: any) => {
       alert(JSON.stringify(error));
     }, () => {
-      this.router.navigate(['/lancamento']);
+      this.router.navigate(['/lancamentos']);
     });
 
   }

@@ -39,10 +39,10 @@ public class RecordController {
     }
 
     @ApiOperation("Insere um registro pra uma determinada categoria")
-    @PostMapping("/{id}/category")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    Mono<Record> save(@ApiParam("idCategoria") @PathVariable("id") Long id, @ApiParam @RequestBody Record r) {
-        return this.service.save(id, r);
+    Mono<Record> save(@ApiParam @RequestBody Record r) {
+        return this.service.save(r);
     }
 
     @ApiOperation("Atualiza um registro")
