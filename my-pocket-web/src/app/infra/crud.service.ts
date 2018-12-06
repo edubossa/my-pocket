@@ -1,4 +1,3 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment.prod';
 import { Observable, of } from 'rxjs';
@@ -13,24 +12,29 @@ export abstract class CrudService<T> {
 
     constructor(protected httpClient: HttpClient, protected endpoint: string) { }
 
-    findAll(): Observable<T[]> {
+    getAll(): Observable<T[]> {
+        console.log('SEND GET REQUEST ==> ' +  this.API + this.endpoint);
         return this.httpClient.get<T[]>(this.API  + this.endpoint, httpOptions);
     }
 
-    save(item: T): Observable<T> {
+    getById(id: any): Observable<T> {
+        console.log('SEND GET REQUEST ==> ' +  this.API + this.endpoint + '/' + id);
+        return this.httpClient.get<T>(this.API  + this.endpoint + '/' + id, httpOptions);
+    }
+
+    post(item: T): Observable<T> {
+        console.log('SEND POST REQUEST ==> ' +  JSON.stringify(item));
         return this.httpClient.post<T>(this.API + this.endpoint, item, httpOptions);
     }
 
-    update(item: T, id: any): Observable<T> {
+    put(item: T, id: any): Observable<T> {
+        console.log('SEND PUT REQUEST ==> ' +  JSON.stringify(item));
         return this.httpClient.put<T>(this.API + this.endpoint + '/' + id, item, httpOptions);
     }
 
     delete(id: any): Observable<T> {
+        console.log('SEND DELETE REQUEST ==> ' +  this.API + this.endpoint + '/' + id);
         return this.httpClient.delete<T>(this.API + this.endpoint + '/' + id, httpOptions);
     }
-
-
-
-
 
 }

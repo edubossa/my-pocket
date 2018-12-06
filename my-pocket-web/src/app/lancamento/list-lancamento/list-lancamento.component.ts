@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LancamentoService } from '../lancamento.service';
 import { take } from 'rxjs/operators';
-import { Observable } from 'rxjs';
 import { Lancamento } from '../lancamento';
 
 @Component({
@@ -19,17 +18,17 @@ export class ListLancamentoComponent implements OnInit {
   }
 
   load() {
-    this.service.findAll()
+    this.service.getAll()
       .pipe(
         take(1)
       )
       .subscribe(data => {
         this.cadastros = data;
-        console.log('Response ==> ' + JSON.stringify(this.cadastros));
+        // console.log('Response ==> ' + JSON.stringify(this.cadastros));
       }, (error: any) => {
         console.error(JSON.stringify(error));
       }, () => {
-        console.log('COMPLETE EWS!');
+        console.log('COMPLETE LOAD LANCAMENTOS !');
       });
   }
 

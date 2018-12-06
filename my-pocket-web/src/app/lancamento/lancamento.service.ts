@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment.prod';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
 import { Lancamento } from './lancamento';
 import { CrudService } from '../infra/crud.service';
-import { FormGroup } from '@angular/forms';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -20,7 +18,8 @@ export class LancamentoService extends CrudService<Lancamento> {
     super(httpClient, 'records');
    }
 
-   save(item: any): Observable<Lancamento> {
+   post(item: any): Observable<Lancamento> {
+      console.log('SEND SAVE REQUEST ==> ' +  JSON.stringify(item));
       return this.httpClient.post<Lancamento>(this.API + this.endpoint + '/' + item.idCategoria + '/category' , item, httpOptions);
   }
 

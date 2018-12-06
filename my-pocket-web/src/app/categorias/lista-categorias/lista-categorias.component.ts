@@ -16,7 +16,7 @@ export class ListaCategoriasComponent implements OnInit {
 
   categoriaForm: FormGroup;
 
-  constructor(protected categoriaService: CategoriaService,
+  constructor(private categoriaService: CategoriaService,
     private fb: FormBuilder) {}
 
   ngOnInit() {
@@ -32,7 +32,7 @@ export class ListaCategoriasComponent implements OnInit {
   }
 
   loadCategoria() {
-    this.categorias$ = this.categoriaService.findCategorias();
+    this.categorias$ = this.categoriaService.getAll();
   }
 
   /**
@@ -58,7 +58,6 @@ export class ListaCategoriasComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('SEND ==> ' + JSON.stringify(this.categoriaForm.value));
     if (this.categoriaForm.value.id != null) {
       this.update();
     } else {
@@ -67,7 +66,7 @@ export class ListaCategoriasComponent implements OnInit {
   }
 
   update() {
-    this.categoriaService.update(this.categoriaForm)
+    this.categoriaService.put(this.categoriaForm.value, this.categoriaForm.value.id)
       .pipe(
         take(1) // Usado para desinscrever o subscribe
       )
@@ -83,7 +82,7 @@ export class ListaCategoriasComponent implements OnInit {
   }
 
   save() {
-    this.categoriaService.save(this.categoriaForm)
+    this.categoriaService.post(this.categoriaForm.value)
       .pipe(
         take(1) // Usado para desinscrever o subscribe
       )

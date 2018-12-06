@@ -14,7 +14,7 @@ export class NewLancamentoComponent implements OnInit {
 
   categorias: Categoria[];
   lancamentoForm: FormGroup;
-  tipoLancamentos: Array<string> = ['OUTPUT', 'INPUT'];
+  tipoLancamentos: Array<string> = ['', 'OUTPUT', 'INPUT'];
 
   constructor(private categoriaService: CategoriaService,
     private service: LancamentoService,
@@ -29,7 +29,7 @@ export class NewLancamentoComponent implements OnInit {
       value: ['', Validators.required]
     });
 
-    this.categoriaService.findCategorias().pipe(take(1))
+    this.categoriaService.getAll().pipe(take(1))
       .subscribe(data => {
         this.categorias  = data;
       }, (error: any) => {
@@ -39,7 +39,7 @@ export class NewLancamentoComponent implements OnInit {
 
   onSubmit() {
     console.log(JSON.stringify(this.lancamentoForm.value));
-    this.service.save(this.lancamentoForm.value).pipe(take(1))
+    this.service.post(this.lancamentoForm.value).pipe(take(1))
     .subscribe(data => {
       console.log('Dados inseridos com sucesso ==> ' + JSON.stringify(data));
     }, (error: any) => {
