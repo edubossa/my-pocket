@@ -5,6 +5,7 @@ import { take } from 'rxjs/operators';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LancamentoService } from '../lancamento.service';
 import { Router } from '@angular/router';
+import { LancamentoType } from '../lancamento-type';
 
 @Component({
   selector: 'app-new-lancamento',
@@ -14,7 +15,12 @@ export class NewLancamentoComponent implements OnInit {
 
   categorias: Categoria[];
   lancamentoForm: FormGroup;
-  tipoLancamentos: Array<string> = ['', 'OUTPUT', 'INPUT'];
+  tipoLancamentos: Array<LancamentoType> = [
+    new LancamentoType('INPUT', 'Entrada'),
+    new LancamentoType('OUTPUT', 'Saída')
+  ];
+
+  tipoLancamento: LancamentoType;
 
   constructor(private categoriaService: CategoriaService,
     private service: LancamentoService,

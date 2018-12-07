@@ -1,3 +1,20 @@
-<p>
-  detail-lancamento works!
-</p>
+<div class="card" *ngIf="lancamento; else loading">
+  <h5 class="card-header">Detalhe do Lançamento</h5>
+  <div class="card-body">
+    <dt>Descrição</dt>
+    <dd>{{ lancamento.description }}</dd>
+    <dt>Categoria</dt>
+    <dd>{{ lancamento.category.name }}</dd>
+    <dt>Tipo do Lançamento</dt>
+    <dd>{{ lancamento.type == 'INPUT' ? 'Entrada' : 'Saída' }}</dd>
+    <dt>Data</dt>
+    <dd>{{ lancamento.date | date:'M/dd/y' }}</dd>
+    <dt>Valor</dt>
+    <dd>R$ {{ lancamento.value }}</dd>
+    <a [routerLink]="['/lancamentos']" routerLinkActive="active"  class="btn btn-primary">Voltar</a>
+  </div>
+</div>
+
+<ng-template #loading>
+    <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
+</ng-template>

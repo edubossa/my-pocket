@@ -6,6 +6,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { LancamentoService } from '../lancamento.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Lancamento } from '../lancamento';
+import { LancamentoType } from '../lancamento-type';
 
 @Component({
   selector: 'app-update-lancamento',
@@ -25,7 +26,10 @@ export class UpdateLancamentoComponent implements OnInit {
     value: ['', Validators.required]
   });
 
-  tipoLancamentos: Array<string> = ['', 'OUTPUT', 'INPUT'];
+  tipoLancamentos: Array<LancamentoType> = [
+    new LancamentoType('INPUT', 'Entrada'),
+    new LancamentoType('OUTPUT', 'Saída')
+  ];
 
   lancamento: Lancamento;
 
