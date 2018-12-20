@@ -7,6 +7,8 @@ import { DetailLancamentoComponent } from './detail-lancamento/detail-lancamento
 import { DeleteLancamentoComponent } from './delete-lancamento/delete-lancamento.component';
 import { ListLancamentoComponent } from './list-lancamento/list-lancamento.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TableComponent } from '../components/table/table.component';
+import { ColumnComponent } from '../components/table/column/column.component';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     NewLancamentoComponent,
     UpdateLancamentoComponent,
     DeleteLancamentoComponent,
-    DetailLancamentoComponent
+    DetailLancamentoComponent,
+    TableComponent,
+    ColumnComponent
   ],
   imports: [
     CommonModule,

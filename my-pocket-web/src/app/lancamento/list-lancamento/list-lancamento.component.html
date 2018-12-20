@@ -1,3 +1,10 @@
+
+<app-table [dataSource]='cadastros' columns='c1'>
+  <app-column [title]='Tipo' field='type'></app-column>
+</app-table>
+
+<br>
+
 <table class="table table-hover" *ngIf="cadastros; else loading" >
     <thead>
       <tr>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CategoriaService } from 'src/app/categorias/categoria.service';
 import { Categoria } from 'src/app/categorias/categoria';
 import { take } from 'rxjs/operators';
@@ -7,13 +7,15 @@ import { LancamentoService } from '../lancamento.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Lancamento } from '../lancamento';
 import { LancamentoType } from '../lancamento-type';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-update-lancamento',
   templateUrl: './update-lancamento.component.html'
 })
-export class UpdateLancamentoComponent implements OnInit {
+export class UpdateLancamentoComponent implements OnInit, OnDestroy {
 
+  sub: Subscription;
   categorias: Categoria[];
 
   lancamentoForm = this.fb.group({
@@ -39,22 +41,17 @@ export class UpdateLancamentoComponent implements OnInit {
     private route: ActivatedRoute,
     private fb: FormBuilder) { }
 
-  /*
-  OBS: REMOVER A LISTA DE SUBSCRIBE
-  */
   ngOnInit() {
     this.categoriaService.getAll()
       .subscribe(data => {
         this.categorias  = data;
-
-        this.route.paramMap.subscribe(params => {
-          this.getLancamento(params.get('id'));
-        });
-
       }, (error: any) => {
         alert(JSON.stringify(error));
+      }, () => {
+        this.sub = this.route.paramMap.subscribe(params => {
+          this.getLancamento(params.get('id'));
+        });
       });
-
   }
 
   private getLancamento(id: any) {
@@ -83,6 +80,10 @@ export class UpdateLancamentoComponent implements OnInit {
       }, () => {
         this.router.navigate(['/lancamentos']);
       });
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 
 }
